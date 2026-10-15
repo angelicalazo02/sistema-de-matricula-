@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipo · Sistema de Matrícula</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Solo para el prototipo: barra de demostración */
+        .demo-bar {
+            display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center;
+            padding: 10px; background: #334155; color: #e2e8f0; font-size: 13px;
+        }
+        .demo-bar button {
+            font: inherit; font-weight: 600; padding: 6px 14px; border-radius: 999px; cursor: pointer;
+            border: 1px solid #64748b; background: transparent; color: #e2e8f0;
+        }
+        .demo-bar button.activo { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .screen { display: none; }
+        .screen.activa { display: block; }
+        .demo-note { text-align: center; color: var(--muted); font-size: 12.5px; padding: 12px; }
+    </style>
+</head>
+<body>
+    <div class="demo-bar">
+        <span>Prototipo:</span>
+        <button class="activo" data-pantalla="login">Login</button>
+        <button data-pantalla="error">Error de login</button>
+        <button data-pantalla="secretario">Secretario</button>
+        <button data-pantalla="exito">Resultado</button>
+        <button data-pantalla="asistente">Asistente</button>
+    </div>
+
+    <!-- LOGIN -->
+    <section class="screen activa" id="pantalla-login">
+        <div class="container">
+            <div class="header">
+                <h1>Sistema de Matrícula</h1>
+                <p>Universidad del Valle · Inicio de sesión</p>
+            </div>
+            <form onsubmit="return false;">
+                <div class="form-group">
+                    <label for="u">Usuario</label>
+                    <input type="text" id="u" value="secretario">
+                </div>
+                <div class="form-group">
+                    <label for="p">Contraseña</label>
+                    <input type="password" id="p" value="sec123">
+                </div>
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+            </form>
+            <p class="help-text text-center mt-16">
+                Perfiles: <strong>secretario</strong> (matricula y consulta) · <strong>asistente</strong> (solo consulta)
+            </p>
+        </div>
+    </section>
+
+    <!-- ERROR DE LOGIN -->
+    <section class="screen" id="pantalla-error">
+        <div class="container">
+            <div class="header">
+                <h1>Sistema de Matrícula</h1>
+                <p>Universidad del Valle · Inicio de sesión</p>
+            </div>
+            <div class="alert alert-error">
+                <span class="alert-icon">❌</span>
+                <div>
+                    <strong>No se pudo iniciar sesión</strong>
+                    <p class="alert-message">Usuario o contraseña incorrectos.</p>
+                </div>
+            </div>
+            <form onsubmit="return false;">
+                <div class="form-group">
+                    <label for="u2">Usuario</label>
+                    <input type="text" id="u2" value="secretario">
+                </div>
+                <div class="form-group">
+                    <label for="p2">Contraseña</label>
+                    <input type="password" id="p2" value="clave">
+                </div>
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- SECRETARIO: FORMULARIO -->
+    <section class="screen" id="pantalla-secretario">
+        <header class="topbar">
+            <div class="brand"><strong>Sistema de Matrícula</strong><small>Universidad del Valle</small></div>
+            <div class="topbar-right">
+                <span class="perfil">Secretario</span>
+                <nav class="topbar-links">
+                    <a href="#">Matricular</a><a href="#">Consultar</a><a href="#" class="logout">Cerrar sesión</a>
+                </nav>
+            </div>
+        </header>
+        <div class="container">
+            <div class="header">
+                <h1>Nueva matrícula</h1>
+                <p>Seleccione el estudiante y el curso</p>
+            </div>
+            <form onsubmit="return false;">
+                <div class="form-group">
+                    <label for="est">Estudiante</label>
+                    <select id="est">
+                        <option>Juan Pérez (juan@uni.edu)</option>
+                        <option>María López (maria@uni.edu)</option>
+                        <option>Carlos Gómez (carlos@uni.edu)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cur">Curso</label>
+                    <select id="cur">
+                        <option>Bases de Datos — 5 cupos</option>
+                        <option>Programación — 8 cupos</option>
+                        <option disabled>Ingeniería de Software — Agotado</option>
+                    </select>
+                    <small class="help-text">Los cursos sin cupos aparecen deshabilitados</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Matricular estudiante</button>
+            </form>
+            <div class="text-center mt-16">
+                <a href="#" class="btn-link" data-ir="asistente">Ver matrículas registradas</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTADO -->
+    <section class="screen" id="pantalla-exito">
+        <header class="topbar">
+            <div class="brand"><strong>Sistema de Matrícula</strong><small>Universidad del Valle</small></div>
+            <div class="topbar-right">
+                <span class="perfil">Secretario</span>
+                <nav class="topbar-links"><a href="#">Matricular</a><a href="#">Consultar</a><a href="#" class="logout">Cerrar sesión</a></nav>
+            </div>
+        </header>
+        <div class="container">
+            <div class="header"><h1>Resultado de matrícula</h1><p>Procesamiento completado</p></div>
+            <div class="alert alert-success">
+                <span class="alert-icon">✅</span>
+                <div>
+                    <strong>¡Matrícula exitosa!</strong>
+                    <p class="alert-message">Juan Pérez quedó matriculado en Bases de Datos.</p>
+                </div>
+            </div>
+            <div class="text-center"><a href="#" class="btn btn-secondary">← Realizar nueva matrícula</a></div>
+        </div>
+    </section>
+
+    <!-- ASISTENTE: CONSULTA -->
+    <section class="screen" id="pantalla-asistente">
+        <header class="topbar">
+            <div class="brand"><strong>Sistema de Matrícula</strong><small>Universidad del Valle</small></div>
+            <div class="topbar-right">
+                <span class="perfil">Asistente</span>
+                <nav class="topbar-links"><a href="#">Consultar</a><a href="#" class="logout">Cerrar sesión</a></nav>
+            </div>
+        </header>
+        <main class="page">
+            <header class="page-header">
+                <h1>Consulta de matrículas</h1>
+                <p>Modo consulta · solo lectura</p>
+            </header>
+            <section class="kpi-grid">
+                <article class="kpi is-accent"><div class="kpi-value">4</div><div class="kpi-label">Matrículas registradas</div></article>
+                <article class="kpi"><div class="kpi-value">2 de 3</div><div class="kpi-label">Cursos con cupo disponible</div></article>
+                <article class="kpi"><div class="kpi-value">14</div><div class="kpi-label">Cupos libres en total</div></article>
+            </section>
+            <section class="info-card">
+                <h2>Matrículas registradas</h2>
+                <div class="toolbar">
+                    <input type="search" id="buscar-demo" placeholder="Buscar por estudiante o curso…" autocomplete="off">
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>ID</th><th>Estudiante</th><th>Curso</th><th>Fecha</th></tr></thead>
+                        <tbody id="tabla-demo">
+                            <tr data-filtro="juan pérez bases de datos"><td>1</td><td>Juan Pérez</td><td>Bases de Datos</td><td>15/10/2026</td></tr>
+                            <tr data-filtro="maría lópez programación"><td>2</td><td>María López</td><td>Programación</td><td>15/10/2026</td></tr>
+                            <tr data-filtro="carlos gómez bases de datos"><td>3</td><td>Carlos Gómez</td><td>Bases de Datos</td><td>14/10/2026</td></tr>
+                            <tr data-filtro="juan pérez programación"><td>4</td><td>Juan Pérez</td><td>Programación</td><td>13/10/2026</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="info-card">
+                <h2>Cupos disponibles</h2>
+                <ul class="cupos-list">
+                    <li><strong>Bases de Datos</strong><span class="cupo-badge disponible">5 cupos · Disponible</span></li>
+                    <li><strong>Programación</strong><span class="cupo-badge disponible">8 cupos · Disponible</span></li>
+                    <li><strong>Ingeniería de Software</strong><span class="cupo-badge agotado">0 cupos · Agotado</span></li>
+                </ul>
+            </section>
+        </main>
+    </section>
+
+    <p class="demo-note">Prototipo estático con datos de ejemplo.</p>
+
+    <script>
+        function mostrar(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('activa'));
+            document.getElementById('pantalla-' + id).classList.add('activa');
+            document.querySelectorAll('.demo-bar button').forEach(b =>
+                b.classList.toggle('activo', b.dataset.pantalla === id));
+        }
+        document.querySelectorAll('.demo-bar button').forEach(b =>
+            b.addEventListener('click', () => mostrar(b.dataset.pantalla)));
+        document.querySelectorAll('[data-ir]').forEach(a =>
+            a.addEventListener('click', e => { e.preventDefault(); mostrar(a.dataset.ir); }));
+        document.querySelectorAll('form button[type=submit]').forEach(btn =>
+            btn.addEventListener('click', () => {
+                const id = btn.closest('.screen').id.replace('pantalla-', '');
+                if (id === 'login' || id === 'error') mostrar('secretario');
+                if (id === 'secretario') mostrar('exito');
+            }));
+        document.getElementById('buscar-demo').addEventListener('input', function () {
+            const q = this.value.trim().toLowerCase();
+            document.querySelectorAll('#tabla-demo tr').forEach(tr =>
+                tr.style.display = tr.dataset.filtro.includes(q) ? '' : 'none');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<svg viewBox="0 0 1100 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="1100" height="560" fill="#ffffff"/>
+  <text x="550" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#111">Modelo Entidad-Relación (Fase 1 - Diseño conceptual)</text>
+  <text x="550" y="54" text-anchor="middle" font-size="13" fill="#555">Sistema de Matrícula - Universidad del Valle</text>
+
+  <!-- Líneas entidad-relación -->
+  <g stroke="#333" stroke-width="2" fill="none">
+    <line x1="210" y1="290" x2="275" y2="290"/>
+    <line x1="385" y1="290" x2="440" y2="290"/>
+    <line x1="610" y1="290" x2="635" y2="290"/>
+    <line x1="745" y1="290" x2="800" y2="290"/>
+  </g>
+
+  <!-- Líneas atributos -->
+  <g stroke="#16a34a" stroke-width="1.5" fill="none">
+    <line x1="125" y1="260" x2="70" y2="156"/>
+    <line x1="125" y1="260" x2="210" y2="156"/>
+    <line x1="125" y1="320" x2="125" y2="374"/>
+    <line x1="525" y1="260" x2="470" y2="156"/>
+    <line x1="525" y1="260" x2="600" y2="156"/>
+    <line x1="885" y1="260" x2="830" y2="156"/>
+    <line x1="885" y1="320" x2="885" y2="374"/>
+    <line x1="885" y1="320" x2="1010" y2="374"/>
+  </g>
+
+  <!-- Entidades (rectángulos) -->
+  <g fill="#dbeafe" stroke="#2563eb" stroke-width="3">
+    <rect x="40"  y="260" width="170" height="60" rx="4"/>
+    <rect x="440" y="260" width="170" height="60" rx="4"/>
+    <rect x="800" y="260" width="170" height="60" rx="4"/>
+  </g>
+  <g font-size="16" font-weight="bold" fill="#1e3a8a" text-anchor="middle">
+    <text x="125" y="296">ESTUDIANTE</text>
+    <text x="525" y="296">MATRÍCULA</text>
+    <text x="885" y="296">CURSO</text>
+  </g>
+
+  <!-- Relaciones (rombos) -->
+  <g fill="#fef3c7" stroke="#d97706" stroke-width="3">
+    <polygon points="275,290 330,260 385,290 330,320"/>
+    <polygon points="635,290 690,260 745,290 690,320"/>
+  </g>
+  <g font-size="12" font-weight="bold" fill="#92400e" text-anchor="middle">
+    <text x="330" y="294">REALIZA</text>
+    <text x="690" y="294">PERTENECE</text>
+  </g>
+  <g font-size="15" font-weight="bold" fill="#111">
+    <text x="222" y="282">1</text>
+    <text x="420" y="282">N</text>
+    <text x="600" y="282">N</text>
+    <text x="760" y="282">1</text>
+  </g>
+
+  <!-- Atributos ESTUDIANTE (óvalos verdes) -->
+  <g fill="#dcfce7" stroke="#16a34a" stroke-width="2">
+    <ellipse cx="70"  cy="130" rx="62" ry="26"/>
+    <ellipse cx="210" cy="130" rx="55" ry="26"/>
+    <ellipse cx="125" cy="400" rx="50" ry="26"/>
+  </g>
+  <!-- Atributos MATRÍCULA -->
+  <g fill="#dcfce7" stroke="#16a34a" stroke-width="2">
+    <ellipse cx="470" cy="130" rx="62" ry="26"/>
+    <ellipse cx="600" cy="130" rx="45" ry="26"/>
+  </g>
+  <!-- Atributos CURSO -->
+  <g fill="#dcfce7" stroke="#16a34a" stroke-width="2">
+    <ellipse cx="830"  cy="130" rx="55" ry="26"/>
+    <ellipse cx="885"  cy="400" rx="55" ry="26"/>
+    <ellipse cx="1010" cy="400" rx="45" ry="26"/>
+  </g>
+
+  <g font-size="13" fill="#14532d" text-anchor="middle">
+    <text x="70"  y="135">id_estudiante</text>
+    <text x="210" y="135">nombre</text>
+    <text x="125" y="405">email</text>
+    <text x="470" y="135">id_matricula</text>
+    <text x="600" y="135">fecha</text>
+    <text x="830" y="135">id_curso</text>
+    <text x="885" y="405">nombre</text>
+    <text x="1010" y="405">cupos</text>
+  </g>
+  <!-- Subrayado de claves primarias -->
+  <g stroke="#14532d" stroke-width="1.5">
+    <line x1="22"  y1="146" x2="118" y2="146"/>
+    <line x1="422" y1="146" x2="518" y2="146"/>
+    <line x1="800" y1="146" x2="860" y2="146"/>
+  </g>
+
+  <!-- Leyenda -->
+  <g font-size="13" fill="#333">
+    <text x="40" y="480" font-weight="bold">Convenciones</text>
+    <ellipse cx="60" cy="505" rx="28" ry="14" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="100" y="510">Óvalo = atributo (texto subrayado = clave primaria)</text>
+    <rect x="32" y="524" width="36" height="22" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="100" y="540">Rectángulo = entidad</text>
+    <polygon points="450,480 472,494 450,508 428,494" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="490" y="498">Rombo = relación</text>
+    <text x="490" y="520">Cardinalidad 1:N (Estudiante–Matrícula) y N:1 (Matrícula–Curso)</text>
+    <text x="490" y="538">Resultado: relación N:M entre Estudiante y Curso resuelta con la entidad MATRÍCULA</text>
+  </g>
+</svg>
